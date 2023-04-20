@@ -111,7 +111,7 @@ flavorizr:
             applicationIdSuffix: "\".development\""
 
             versionNameSuffix: "\"Dev\"" # Don't forget to escape strings with \"
-            signingConfig: signingConfig.dev
+            signingConfig: signingConfigs.debug
       ios:
         bundleId: "com.example.apple"
         generateDummyAssets: true
@@ -130,7 +130,7 @@ flavorizr:
             applicationIdSuffix: "\".qa\""
 
             versionNameSuffix: "\"Qa\"" # Don't forget to escape strings with \"
-            signingConfig: signingConfig.qa
+            signingConfig: signingConfigs.qa
       ios:
         bundleId: "com.example.banana"
         generateDummyAssets: true
@@ -148,7 +148,7 @@ flavorizr:
             applicationIdSuffix: "\".uat\""
 
             versionNameSuffix: "\"Uat\"" # Don't forget to escape strings with \"
-            signingConfig: signingConfig.uat
+            signingConfig: signingConfigs.uat
       ios:
         bundleId: "com.example.banana"
         generateDummyAssets: true
@@ -162,7 +162,7 @@ flavorizr:
         generateDummyAssets: true
         #icon: ""
         customConfig:
-            signingConfig: signingConfig.dev
+            signingConfig: signingConfigs.release
       ios:
         bundleId: "com.example.banana"
         generateDummyAssets: true
