@@ -46,6 +46,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  # https://pub.dev/packages/flutter_flavorizr
+  flutter_flavorizr: ^2.1.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -88,3 +90,80 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flavorizr:
+  ide: "vscode"
+  app: 
+    android:
+      flavorDimensions: "flavor"
+    ios:
+
+  flavors:
+    dev:
+      app:
+        name: "EcommApp"
+
+      android:
+        applicationId: "com.example.ecomm_app"
+        generateDummyAssets: true
+        #icon: ""
+        customConfig:
+            applicationIdSuffix: "\".development\""
+
+            versionNameSuffix: "\"Dev\"" # Don't forget to escape strings with \"
+            signingConfig: signingConfig.dev
+      ios:
+        bundleId: "com.example.apple"
+        generateDummyAssets: true
+        #icon: ""
+        buildSettings:
+         
+    qa:
+      app:
+        name: "EcommApp"
+
+      android:
+        applicationId: "com.example.ecomm_app"
+        generateDummyAssets: true
+        #icon: ""        
+        customConfig:
+            applicationIdSuffix: "\".qa\""
+
+            versionNameSuffix: "\"Qa\"" # Don't forget to escape strings with \"
+            signingConfig: signingConfig.qa
+      ios:
+        bundleId: "com.example.banana"
+        generateDummyAssets: true
+        #icon: ""
+
+    uat:
+      app:
+        name: "EcommApp"
+
+      android:
+        applicationId: "com.example.ecomm_app"
+        generateDummyAssets: true
+        #icon: ""        
+        customConfig:
+            applicationIdSuffix: "\".uat\""
+
+            versionNameSuffix: "\"Uat\"" # Don't forget to escape strings with \"
+            signingConfig: signingConfig.uat
+      ios:
+        bundleId: "com.example.banana"
+        generateDummyAssets: true
+        #icon: ""
+    prod:
+      app:
+        name: "EcommApp"
+
+      android:
+        applicationId: "com.example.ecomm_app"
+        generateDummyAssets: true
+        #icon: ""
+        customConfig:
+            signingConfig: signingConfig.dev
+      ios:
+        bundleId: "com.example.banana"
+        generateDummyAssets: true
+        #icon: ""
