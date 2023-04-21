@@ -1,3 +1,4 @@
+import 'package:ecomm_app/base/base_state.dart';
 import 'package:flutter/material.dart';
 
 class MainWidget extends StatelessWidget {
@@ -25,7 +26,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends BaseState<HomePage> {
   int _counter = 0;
 
   void _incrementCounter() {

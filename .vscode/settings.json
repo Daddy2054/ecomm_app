@@ -1,11 +1,23 @@
 {
-    "dart.flutterSdkPath": ".fvm/flutter_sdk",
-    // Remove .fvm files from search
-    "search.exclude": {
-      "**/.fvm": true
-    },
-    // Remove from file watching
-    "files.watcherExclude": {
-      "**/.fvm": true
-    }
-  }
+  "cSpell.diagnosticLevel": "Hint",
+  "dart.flutterSdkPath": ".fvm/flutter_sdk",
+  // Remove .fvm files from search
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  // Remove from file watching
+  "files.watcherExclude": {
+    "**/.fvm": true
+  },
+
+  "workbench.colorCustomizations": {
+    "editorHint.foreground": "#f000",
+    "editorHint.border": "#00ff66"
+  },
+
+  "cSpell.words":[ 
+    "ecom_app",
+    "cupertino"
+
+  ]
+}
