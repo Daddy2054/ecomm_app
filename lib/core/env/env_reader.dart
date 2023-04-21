@@ -1,5 +1,11 @@
-import 'package:ecomm_app/flavors.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../flavor/flavor.dart';
+
+final envReaderProvider = Provider<EnvReader>((ref) {
+  return EnvReader();
+});
 
 class EnvReader {
   String getEnvFileName(Flavor flavor) {
@@ -20,6 +26,7 @@ class EnvReader {
   String getBaseUrl() {
     return dotenv.get('BASE_URL');
   }
+
   String getApiKey() {
     return dotenv.get('API_KEY');
   }
