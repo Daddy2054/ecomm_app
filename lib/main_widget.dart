@@ -1,5 +1,9 @@
 import 'package:ecomm_app/base/base_state.dart';
+import 'package:ecomm_app/i18n/i18n.dart';
 import 'package:flutter/material.dart';
+/// auto generated after you run `flutter pub get`
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class MainWidget extends StatelessWidget {
   const MainWidget({super.key});
@@ -9,8 +13,16 @@ class MainWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      localizationsDelegates: const [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocales.supportedLocales,
+      locale: AppLocales.ar.locale, 
       theme: ThemeData(
-                primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue,
       ),
       home: const HomePage(title: 'Flutter Demo Home Page'),
     );
@@ -45,8 +57,7 @@ class _HomePageState extends BaseState<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+             Text(translation.buttonPushMsg(_counter),
             ),
             Text(
               '$_counter',
@@ -57,7 +68,7 @@ class _HomePageState extends BaseState<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        tooltip: translation.increment,
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

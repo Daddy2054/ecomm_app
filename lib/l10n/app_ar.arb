@@ -1,0 +1,14 @@
+{
+    "@@last_modified": "2023-04-22T20:08:02.807739",
+    "@@locale": "ar",
+    "homeTitle": "الصفحة الرئيسية Demo Flutter",
+    "buttonPushMsg": "لقد دفعت الزر {counter} مرات:",
+    "@buttonPushMsg": {
+        "description": "Auto-generated for buttonPushMsg",
+        "placeholders": {
+            "counter": {}
+        }
+    },
+    "increment": "زيادة راتب",
+    "home": "بيت"
+}
