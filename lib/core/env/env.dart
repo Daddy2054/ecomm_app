@@ -11,6 +11,11 @@ abstract class EnvDev {
     obfuscate: true,
   )
   static final apiKey = _EnvDev.apiKey;
+    @EnviedField(
+    varName: 'CERTIFICATE',
+    obfuscate: true,
+  )
+  static final certificate = _EnvDev.certificate;
 }
 
 @Envied(path: '.qa.env')
@@ -22,6 +27,11 @@ abstract class EnvQA {
     obfuscate: true,
   )
   static final apiKey = _EnvQA.apiKey;
+    @EnviedField(
+    varName: 'CERTIFICATE',
+    obfuscate: true,
+  )
+  static final certificate = _EnvQA.certificate;
 }
 
 @Envied(path: '.uat.env')
@@ -33,6 +43,11 @@ abstract class EnvUAT {
     obfuscate: true,
   )
   static final apiKey = _EnvUAT.apiKey;
+    @EnviedField(
+    varName: 'CERTIFICATE',
+    obfuscate: true,
+  )
+  static final certificate = _EnvUAT.certificate;
 }
 
 @Envied(path: '.prod.env')
@@ -44,4 +59,9 @@ abstract class EnvProd {
     obfuscate: true,
   )
   static final apiKey = _EnvProd.apiKey;
+    @EnviedField(
+    varName: 'CERTIFICATE',
+    obfuscate: true,
+  )
+  static final certificate = _EnvProd.certificate;
 }

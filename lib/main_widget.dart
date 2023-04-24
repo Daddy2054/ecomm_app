@@ -1,11 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:ecomm_app/base/base_consumer_state.dart';
-import 'package:ecomm_app/base/base_state.dart';
 import 'package:ecomm_app/common/error/no_internet_connection.dart';
 import 'package:ecomm_app/core/providers/app_background_state_provider.dart';
 import 'package:ecomm_app/core/providers/internet_connection_observer.dart';
+import 'package:ecomm_app/core/remote/network_service.dart';
 import 'package:ecomm_app/i18n/i18n.dart';
 import 'package:flutter/material.dart';
-
 /// auto generated after you run `flutter pub get`
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -98,7 +98,7 @@ class _MainWidgetState extends BaseConsumerState<MainWidget> {
         ref.read(appBackgroundStateProvider.notifier).state = true;
         break;
       case AppLifecycleState.resumed:
-        ref.read(appBackgroundStateProvider.notifier).state = false   ;
+        ref.read(appBackgroundStateProvider.notifier).state = false;
         break;
 
       default:
@@ -106,17 +106,31 @@ class _MainWidgetState extends BaseConsumerState<MainWidget> {
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends BaseState<HomePage> {
+class _HomePageState extends BaseConsumerState<HomePage> {
   int _counter = 0;
+  late Dio _dio;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _dio = ref.read(networkServiceProvider);
+      getSomeData(); 
+    });
+  }
+
+  void getSomeData() async {
+    final response = await _dio.get('api/v1/banner/getHomeBannerSlider');
+    log.info(response);
+  }
 
   void _incrementCounter() {
     setState(() {
