@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:ecomm_app/base/base_consumer_state.dart';
 import 'package:ecomm_app/common/error/no_internet_connection.dart';
+import 'package:ecomm_app/core/auth/local_auth.dart';
 import 'package:ecomm_app/core/providers/app_background_state_provider.dart';
 import 'package:ecomm_app/core/providers/internet_connection_observer.dart';
 import 'package:ecomm_app/core/remote/network_service.dart';
 import 'package:ecomm_app/i18n/i18n.dart';
 import 'package:flutter/material.dart';
+
 /// auto generated after you run `flutter pub get`
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -123,7 +125,7 @@ class _HomePageState extends BaseConsumerState<HomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _dio = ref.read(networkServiceProvider);
-      getSomeData(); 
+     // getSomeData();
     });
   }
 
@@ -154,6 +156,16 @@ class _HomePageState extends BaseConsumerState<HomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final didAuthenticate =
+                    await ref.read(localAuthProvider).authenticate();
+                if (didAuthenticate) {
+                  debugPrint('successful auth');
+                }
+              },
+              child: const Text('Authenticate to unlock'),
             ),
           ],
         ),

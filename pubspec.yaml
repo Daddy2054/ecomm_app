@@ -50,6 +50,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   hive_flutter: ^1.1.0
   envied: ^0.3.0
+  local_auth:
  
 
 
