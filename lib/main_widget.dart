@@ -5,6 +5,7 @@ import 'package:ecomm_app/core/auth/local_auth.dart';
 import 'package:ecomm_app/core/providers/app_background_state_provider.dart';
 import 'package:ecomm_app/core/providers/internet_connection_observer.dart';
 import 'package:ecomm_app/core/remote/network_service.dart';
+import 'package:ecomm_app/features/setting/presentation/ui/setting_screen.dart';
 import 'package:ecomm_app/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +88,8 @@ class _MainWidgetState extends BaseConsumerState<MainWidget> {
       ),
       home: isAppInBackground
           ? const ColoredBox(color: Colors.black)
-          : const HomePage(title: 'Flutter Demo Home Page'),
+          : const SettingScreen(),
+          //HomePage(title: 'Flutter Demo Home Page'),
     );
   }
 
