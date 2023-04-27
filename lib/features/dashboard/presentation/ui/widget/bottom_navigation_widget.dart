@@ -18,7 +18,7 @@ class _BottomNavigationWidgetState
   Widget build(BuildContext context) {
     final index = ref.watch(dashboardControllerProvider.select(
       (value) => value.pageIndex,
-    ));
+    ),);
     return BottomNavigationBar(
       currentIndex: index,
       onTap: (value) => _onItemTapped(value, ),

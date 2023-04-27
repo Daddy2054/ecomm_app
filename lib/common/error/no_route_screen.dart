@@ -16,7 +16,7 @@ class NoRouteScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('No Route found'),
-            ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.home), label: const Text('Home'))
+            ElevatedButton.icon(onPressed: (){}, icon: const Icon(Icons.home), label: const Text('Home'))
       
           ],
         ),

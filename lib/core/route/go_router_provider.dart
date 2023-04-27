@@ -1,7 +1,10 @@
 import 'package:ecomm_app/common/error/no_internet_connection.dart';
 import 'package:ecomm_app/common/error/no_route_screen.dart';
+import 'package:ecomm_app/core/route/notifier/go_router_notifier.dart';
 import 'package:ecomm_app/core/route/route_name.dart';
-import 'package:ecomm_app/features/cart/presentation/ui/widget/cart_screen.dart';
+import 'package:ecomm_app/features/auth/presentation/ui/login_screen.dart';
+import 'package:ecomm_app/features/auth/presentation/ui/sign_up_screen.dart';
+import 'package:ecomm_app/features/cart/presentation/ui/cart_screen.dart';
 import 'package:ecomm_app/features/home/presentation/ui/widget/home_screen.dart';
 import 'package:ecomm_app/features/setting/presentation/ui/setting_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +13,14 @@ import 'package:go_router/go_router.dart';
 import 'package:ecomm_app/features/dashboard/presentation/ui/dashboard_screen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey(debugLabel: 'root');
-final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey(debugLabel: 'shell');
+final GlobalKey<NavigatorState> _shellNavigatorKey =
+    GlobalKey(debugLabel: 'shell');
 
 final gorouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: navigatorKey,
     initialLocation: '/',
+    refreshListenable: ref.read(goRouterNotifierProvider),
     routes: <RouteBase>[
       GoRoute(
         parentNavigatorKey: navigatorKey,
@@ -25,6 +30,23 @@ final gorouterProvider = Provider<GoRouter>((ref) {
           key: state.pageKey,
         ),
       ),
+      GoRoute(
+          parentNavigatorKey: navigatorKey,
+          path: '/login',
+          name: loginRoute,
+          builder: (context, state) => LoginScreen(
+                key: state.pageKey,
+              ),
+          routes: [
+            GoRoute(
+              parentNavigatorKey: navigatorKey,
+              path: '/signUp',
+              name: signUpRoute,
+              builder: (context, state) => SignUpScreen(
+                key: state.pageKey,
+              ),
+            ),
+          ],),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
