@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:ecomm_app/base/base_consumer_state.dart';
-import 'package:ecomm_app/common/error/no_internet_connection.dart';
 import 'package:ecomm_app/core/auth/local_auth.dart';
 import 'package:ecomm_app/core/providers/app_background_state_provider.dart';
 import 'package:ecomm_app/core/providers/internet_connection_observer.dart';
@@ -22,7 +21,6 @@ class MainWidget extends ConsumerStatefulWidget {
 
 class _MainWidgetState extends BaseConsumerState<MainWidget> {
   final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey();
-  
 
   @override
   void initState() {
@@ -36,11 +34,7 @@ class _MainWidgetState extends BaseConsumerState<MainWidget> {
         await ref.read(internetConnectionObserverProvider).isNetworkConnected();
     if (!isConnected) {
       if (!mounted) return;
-      navigatorKey.currentState?.push(
-        MaterialPageRoute(
-          builder: (_) => const NoInternetConnectionScreen(),
-        ),
-      );
+      ref.read(goRouterProvider).push('/noInternet');
     }
   }
 
@@ -49,7 +43,7 @@ class _MainWidgetState extends BaseConsumerState<MainWidget> {
         ref.read(internetConnectionObserverProvider).hasConnectionStream.stream;
     connectionStream.listen((isConnected) {
       if (!isConnected) {
-        _showSnackBar();
+        ref.read(goRouterProvider).push('/noInternet');
       }
     });
   }
@@ -69,7 +63,7 @@ class _MainWidgetState extends BaseConsumerState<MainWidget> {
   @override
   Widget build(BuildContext context) {
     //final isAppInBackground = ref.watch(appBackgroundStateProvider);
-    final router = ref.watch(gorouterProvider);
+    final router = ref.watch(goRouterProvider);
 
     return MaterialApp.router(
       title: 'Flutter Demo',
