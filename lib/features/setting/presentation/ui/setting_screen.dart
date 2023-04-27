@@ -1,6 +1,7 @@
 import 'package:ecomm_app/common/class/set_pass_code_screen.dart';
 import 'package:ecomm_app/common/class/show_pass_code_screen.dart';
 import 'package:ecomm_app/core/local/db/hive_box_key.dart';
+import 'package:ecomm_app/core/route/notifier/go_router_notifier.dart';
 import 'package:ecomm_app/features/setting/presentation/controller/setting_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -51,6 +52,16 @@ class _SettingScreenState extends BaseConsumerState<SettingScreen>
               },
             ),
           ),
+          const SizedBox(
+            height: 8,
+          ),
+          ElevatedButton.icon(
+            onPressed: () {
+              ref.read(goRouterNotifierProvider).isLoggedIn = false;
+            },
+            icon: const Icon(Icons.logout),
+            label: const Text('LogOut'),
+          )
         ],
       ),
     );
@@ -89,9 +100,9 @@ class _SettingScreenState extends BaseConsumerState<SettingScreen>
       context,
       correctString: correctString,
       didUnlocked: () {
-            ref
+        ref
             .read(settingControllerProvider.notifier)
-            .addPassCodeToBox(passCodeKey,null );
+            .addPassCodeToBox(passCodeKey, null);
         Navigator.of(context).pop();
       },
     );

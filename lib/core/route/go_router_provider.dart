@@ -17,10 +17,28 @@ final GlobalKey<NavigatorState> _shellNavigatorKey =
     GlobalKey(debugLabel: 'shell');
 
 final gorouterProvider = Provider<GoRouter>((ref) {
+  bool isDuplicate = false;
+  final notifier = ref.read(goRouterNotifierProvider);
+
   return GoRouter(
     navigatorKey: navigatorKey,
     initialLocation: '/',
     refreshListenable: ref.read(goRouterNotifierProvider),
+    redirect: (context, state) {
+      final isLoggedIn = notifier.isLoggedIn;
+      final isGoingToLogin = state.subloc == '/login';
+      if (!isLoggedIn && !isGoingToLogin && !isDuplicate) {
+        isDuplicate = true;
+        return '/login';
+      } else if (isLoggedIn && isGoingToLogin && !isDuplicate) {
+        isDuplicate = true;
+        return '/';
+      }
+      if (isDuplicate) {
+        isDuplicate = false;
+      }
+      return null;
+    },
     routes: <RouteBase>[
       GoRoute(
         parentNavigatorKey: navigatorKey,
@@ -31,22 +49,22 @@ final gorouterProvider = Provider<GoRouter>((ref) {
         ),
       ),
       GoRoute(
-          parentNavigatorKey: navigatorKey,
-          path: '/login',
-          name: loginRoute,
-          builder: (context, state) => LoginScreen(
-                key: state.pageKey,
-              ),
-          routes: [
-            GoRoute(
-              parentNavigatorKey: navigatorKey,
-              path: '/signUp',
-              name: signUpRoute,
-              builder: (context, state) => SignUpScreen(
-                key: state.pageKey,
-              ),
+        parentNavigatorKey: navigatorKey,
+        path: '/login',
+        name: loginRoute,
+        builder: (context, state) => LoginScreen(
+          key: state.pageKey,
+        ),
+        routes: [
+          GoRoute(
+            path: 'signUp',
+            name: signUpRoute,
+            builder: (context, state) => SignUpScreen(
+              key: state.pageKey,
             ),
-          ],),
+          ),
+        ],
+      ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
