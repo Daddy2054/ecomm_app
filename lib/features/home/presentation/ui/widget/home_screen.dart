@@ -1,6 +1,7 @@
 import 'package:ecomm_app/base/base_consumer_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -17,11 +18,23 @@ class _HomeScreenState extends BaseConsumerState<HomeScreen> {
         title: const Text('Home'),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text('Home Screen'),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Home Screen'),
+            const SizedBox(
+              height: 8,
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                context.go('/detail');
+              },
+              icon: const Icon(Icons.inventory),
+              label: const Text('Product Detail'),
+            ),
+          ],
+        ),
       ),
     );
   }

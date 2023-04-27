@@ -2,6 +2,7 @@ import 'package:ecomm_app/base/base_consumer_state.dart';
 import 'package:ecomm_app/core/providers/internet_connection_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class NoInternetConnectionScreen extends ConsumerStatefulWidget {
   const NoInternetConnectionScreen({super.key});
@@ -49,7 +50,7 @@ class _NoInternetConnectionScreenState
         await ref.read(internetConnectionObserverProvider).isNetworkConnected();
     if (isConnected) {
       if (!mounted) return;
-      Navigator.pop(context);
+      context.pop();
     }
   }
 
@@ -59,7 +60,8 @@ class _NoInternetConnectionScreenState
     connectionStream.listen((isConnected) {
       if (isConnected) {
         if (!mounted) return;
-        Navigator.pop(context);
+//        Navigator.pop(context);
+        context.pop();
       }
     });
   }
