@@ -21,7 +21,7 @@ class _BottomNavigationWidgetState
     ));
     return BottomNavigationBar(
       currentIndex: index,
-      onTap: (value) => _onItemTapped(value, context),
+      onTap: (value) => _onItemTapped(value, ),
       selectedItemColor: Colors.green,
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: true,
@@ -35,8 +35,8 @@ class _BottomNavigationWidgetState
         fontSize: 12,
         fontWeight: FontWeight.w500,
       ),
-      items: [
-        const BottomNavigationBarItem(
+      items: const [
+        BottomNavigationBarItem(
           activeIcon: Icon(
             Icons.home_filled,
           ),
@@ -45,7 +45,7 @@ class _BottomNavigationWidgetState
           ),
           label: 'Home',
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           activeIcon: Icon(
             Icons.shopify,
           ),
@@ -54,7 +54,7 @@ class _BottomNavigationWidgetState
           ),
           label: 'Cart',
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           activeIcon: Icon(
             Icons.settings,
           ),
@@ -70,7 +70,7 @@ class _BottomNavigationWidgetState
 
 
 
-  void _onItemTapped(int index, BuildContext context) {
+  void _onItemTapped(int index) {
     ref.read(dashboardControllerProvider.notifier).setPageIndex(index);
     switch (index) {
       case 0:
@@ -82,7 +82,7 @@ class _BottomNavigationWidgetState
 
         break;
       case 2:
-        GoRouter.of(context).go('/setting ');
+        GoRouter.of(context).go('/setting');
 
         break;
 

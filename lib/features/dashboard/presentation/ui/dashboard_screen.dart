@@ -2,15 +2,15 @@
 import 'package:ecomm_app/features/dashboard/presentation/ui/widget/bottom_navigation_widget.dart';
 import 'package:flutter/material.dart';
 
-class DasboardScreen extends StatefulWidget {
+class DashboardScreen extends StatefulWidget {
   final Widget child;
-  const DasboardScreen({Key? key, required this.child}):  super(key:key);
+  const DashboardScreen({Key? key, required this.child}):  super(key:key);
 
   @override
-  State<DasboardScreen> createState() => _DasboardScreenState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DasboardScreenState extends State<DasboardScreen> {
+class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
