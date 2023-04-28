@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 class MainWidget extends ConsumerStatefulWidget {
   const MainWidget({super.key});
@@ -81,8 +82,8 @@ class _MainWidgetState extends BaseConsumerState<MainWidget> with AppThemeMixin{
       ],
       supportedLocales: AppLocales.supportedLocales,
       locale: AppLocales.en.locale,
-      theme: lightTheme,
-      darkTheme: darkTheme,
+      theme: FlexThemeData.light(colors: customFlexScheme.light,),
+      darkTheme: FlexThemeData.dark(colors: customFlexScheme.dark,),
       themeMode: currentTheme(kLight),
       // home: isAppInBackground
       //     ? const ColoredBox(color: Colors.black)
