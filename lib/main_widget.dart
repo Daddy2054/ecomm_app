@@ -5,6 +5,8 @@ import 'package:ecomm_app/core/providers/app_background_state_provider.dart';
 import 'package:ecomm_app/core/providers/internet_connection_observer.dart';
 import 'package:ecomm_app/core/remote/network_service.dart';
 import 'package:ecomm_app/core/route/go_router_provider.dart';
+import 'package:ecomm_app/core/theme/app_theme.dart';
+import 'package:ecomm_app/core/theme/theme_const.dart';
 import 'package:ecomm_app/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 /// auto generated after you run `flutter pub get`
@@ -19,7 +21,7 @@ class MainWidget extends ConsumerStatefulWidget {
   ConsumerState<MainWidget> createState() => _MainWidgetState();
 }
 
-class _MainWidgetState extends BaseConsumerState<MainWidget> {
+class _MainWidgetState extends BaseConsumerState<MainWidget> with AppThemeMixin{
   final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey();
 
   @override
@@ -79,9 +81,9 @@ class _MainWidgetState extends BaseConsumerState<MainWidget> {
       ],
       supportedLocales: AppLocales.supportedLocales,
       locale: AppLocales.en.locale,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: currentTheme(kLight),
       // home: isAppInBackground
       //     ? const ColoredBox(color: Colors.black)
       //     : const SettingScreen(),
